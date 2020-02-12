@@ -8,7 +8,12 @@ url = "https://www.yellowpages.uz/rubrika/bolnicy-i-kliniki/tashkent?pagenumber=
 
 def process(text):
 	os.system('cls' if os.name == 'nt' else 'clear')
-	print(text)
+	if text == "loading":
+		process(".")
+		process("..")
+		process("...")
+	else:
+		print(text)
 
 process("Getting html page from url...")
 
@@ -38,26 +43,23 @@ for subItem in objects:
 			capt = lambda capt: [cap.capitalize() for cap in capt]
 			sub_list.append([" ".join(capt(name.split(": ")[1].split())), " ".join(capt(address))])
 			counter = True
-		process(".")
-		process("..")
-		process("...")
+		process("loading")
+
 	else:
 		data_lists.append(sub_list)
-		process(".")
-		process("..")
-		process("...")
+		process("loading")
+
 
 process("Filtering has been comlated!")
 process("Starting sorting")
 data = []
 for k in data_lists:
 	data.append([k[-1][0], k[-1][1], k[0][0]])
-	process(".")
-	process("..")
-	process("...")
+	process("loading")
+
 
 process("Exporting to csv...")
-df = pd.DataFrame(data=data, columns=["Name", "Address", "Phone number"], index=range(len(data_lists)))
-df.to_csv("hospital_database.csv")
+# df = pd.DataFrame(data=data, columns=["Name", "Address", "Phone number"], index=range(len(data_lists)))
+# df.to_csv("hospital_database.csv")
 
 process("Data collecting and saving has been complated!")
